@@ -1,401 +1,307 @@
 <!DOCTYPE html>
-
-<!-- 何見てんだよ -->
-
-<html lang="ja">
+<html>
 <head>
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
+  <title>もちうつねのホームページ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    html, body {
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+    }
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>もちうつねのホームページ</title>
+    h1 {
+      font-size: clamp(20px, 6vw, 36px);
+      color: black;
+    }
 
-    <meta property="og:site_name" content="もちうつねのホームページ" />
+    body {
+      background-image: url("background.png");
+      background-repeat: repeat;
+      background-position: 0 0;
+      animation: scrollBg 60s linear infinite;
+      background-color: #FFCCFF;
+      color: #000;
+      font-family: "MS Gothic", "Osaka", sans-serif;
+      text-align: center;
+      padding-top: 50px;
+    }
 
-    <link rel="icon" href="img/favicon.ico" sizes="any">
-    <link rel="icon" href="img/favicon.png" type="image/png" sizes="32x32">
-    <link rel="apple-touch-icon" href="img/favicon.png">
+    @keyframes scrollBg {
+      from { background-position: 0 0; }
+      to { background-position: -512px -512px; }
+    }
 
-    <!-- URLが正規である証 -->
-    <link rel="canonical" href="https://mochiutsune.com/">
+    a { color: blue; }
+    a:visited { color: purple; }
 
-    <!-- OGP 各種SNS用 カードです -->
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="もちうつねのホームページ">
-    <meta property="og:title" content="もちうつねのホームページ">
-    <meta property="og:image" content="https://mochiutsune.com/img/favicon.png">
-    <meta property="og:url" content="https://mochiutsune.com/">
+    .container {
+      width: 95%;
+      max-width: 600px;
+      margin: 0 auto;
+      border: 2px dashed #f0f;
+      padding: 20px;
+      background: #ffffffcc;
+    }
 
-    <!-- ツイッター用カードです -->
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="もちうつねのホームページ">
-    <meta name="twitter:description" content="お知らせ：ホームページが新しくなりました">
-    <meta name="twitter:image" content="https://mochiutsune.com/img/favicon.png">
-
-    <style>
-        /*-----------------------------------セレクターです-----------------------------------*/
-
-        #pillarbox {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 10000; /* 最も激しい主張(優先度です) */
-            display: block;
-        }
-
-            #pillarbox .pillar {
-                position: absolute;
-                top: 0;
-                bottom: 0;
-                /* ピラーボックスの画像の指定をするます */
-                background-image: url("img/tile1.png");
-                background-repeat: repeat;
-                background-size: 240px auto;
-                image-rendering: pixelated;
-            }
-
-                #pillarbox .pillar.left {
-                    left: 0;
-                    width: max(calc((100vw - (100vh * 4 / 3)) / 2), 0px);
-                }
-
-                #pillarbox .pillar.right {
-                    right: 0;
-                    width: max(calc((100vw - (100vh * 4 / 3)) / 2), 0px);
-                }
-
-        /*-----------------------------------FONT指定します-----------------------------------*/
-
-        @font-face {
-            font-family: "DotGothic16";
-            src: url("font/DotGothic16-Regular.ttf") format("truetype")
-        }
-
-        /*-----------------------------------要素です-----------------------------------*/
-
-        h1 {
-            font-size: clamp(1.7rem, 4vw, 5rem);
-            color: white;
-            margin: 0;
-            text-shadow: -3px -3px 0 black, 3px -3px 0 black, -3px 3px 0 black, 3px 3px 0 black;
-        }
-
-        h2 {
-            font-size: clamp(1.2rem, 2.8vw, 1.8rem);
-            color: black;
-            font-weight: normal;
-            margin: 0.2em 0;
-        }
-
-        body {
-            background-color: #febbdd; /* 噛み飽きたガムのような、そんな色 */
-            animation: scroll_background 15s linear infinite;
-            background-image: url("img/background.png");
-            font: 18px "DotGothic16";
-            text-align: center;
-        }
-
-        body {
-            margin: 0;
-            padding-top: 44px; /*  ～トップバーに埋もれない為に～ */
-        }
-
-        /*-----------------------------------クラスです-----------------------------------*/
-
-        /* 中央揃えにするです */
-        .centered {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        /* 上部のバー */
-        .top-bar {
-            background: #ffffe0;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            font: 18px "DotGothic16";
-            text-align: center;
-            padding: 8px 0;
-            z-index: 1000; /* 激しい主張(優先度です) */
-        }
-
-        /* 画像ボケ防止(ニアレストネイバー)です*/
-        .nn1, .nn2, .nn3, .nn4, .nn5, .nn-logo {
-            image-rendering: pixelated;
-        }
-
-        /*48px基準です*/
-        .nn1 {
-            width: 288px;
-            height: auto;
-        }
-        /*4バイ */
-        .nn2 {
-            width: 96px;
-            height: auto;
-        }
-        /*2バイ */
-        .nn3 {
-            width: 48px;
-            height: auto;
-        }
-        /*1バイ */
-        .nn4 {
-            width: 24px;
-            height: auto;
-        }
-        /*1/2バイ */
-        .nn5 {
-            width: 12px;
-            height: auto;
-        }
-        /*1/4バイ */
-
-        .nn-logo {
-            width: clamp(200px, 90vw, 768px);
-            height: auto;
-        }
-
-        /* SNSボタンです */
-        .sns-button, .twitter-button, .youtube-button, .niconico-button {
-            border: 2px solid black;
-            padding: 1px 8px;
-            text-decoration: none;
-            color: black;
-            font-size: 16px;
-            border-radius: 8px;
-        }
-
-        .twitter-button {
-            background-color: #00aafb;
-            color: white;
-        }
-
-        .youtube-button {
-            background-color: #e23a55;
-            color: white;
-        }
-
-        .niconico-button {
-            background-color: #fff;
-            color: black;
-        }
-
-        .sns-button {
-            background-color: white;
-        }
-
-        /* その他リンク用のコンテナです */
-        .other-link-container {
-            padding: 20px;
-            display: flex;
-            gap: 20px;
-        }
-
-        .item {
-            text-align: center;
-        }
-
-        .item-caption {
-            margin-top: 1px;
-            font-size: 18px;
-            line-height: 1;
-        }
-
-        /* タイトル用のコンテナです */
-        .title-container {
-            background: #fff;
-            border: 1px solid #e5e7eb;
-            border-radius: 8px;
-            padding: 16px;
-            border: 3px solid #383e60;
-            box-shadow: 0 2px 8px rgba(0,0,0,.06);
-        }
-
-        /* ボトム用です */
-        .bottom-container {
-            place-items: center;
-            background: #fff;
-            border: 3px solid #383e60;
-            padding: 1%;
-            box-shadow: 0 2px 8px rgba(0,0,0,.06);
-            min-height: 1%;
-            box-sizing: border-box;
-        }
-
-        /* 汎用コンテナ */
-        .container1, .container2, .container3, .container4 {
-            padding: 16px;
-            margin: 20px;
-            width: 80%;
-            border: 3px solid #383e60;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,.06);
-            max-width: 700px;
-        }
-
-        .container1 {
-            background: #75aae6;
-        }
-
-        .container2 {
-            background: #ffeb86;
-        }
-
-        .container3 {
-            background: #c3ff48;
-        }
+    h1 {
+      font-size: clamp(20px, 6vw, 36px);
+    }
 
 
 
-        .outlined-text {
-            color: white;
-            text-shadow: 2px 2px 0 black, -2px 2px 0 black, 2px -2px 0 black, -2px -2px 0 black, 2px 0 0 black, -2px 0 0 black, 0 2px 0 black, 0 -2px 0 black;
-        }
+    @keyframes sparkle {
+      0%, 100% { background-position: -200% 0; }
+      50% { background-position: 200% 0; }
+    }
 
-        .info-image {
-            width: 100%;
-            height: auto;
-            display: block;
-            max-width: 800px;
-        }
+    .retro-button, .twitter-button, .youtube-button, .niconico-button {
+      display: inline-block;
+      padding: 2px 10px;
+      margin: 10px;
+      border: 2px solid #000088;
+      font-weight: bold;
+      text-decoration: none;
+      color: black;
+      box-shadow: 2px 2px #8888ff;
+      transition: transform 0.1s;
+      font-size: 16px;
+    }
 
-        /*-----------------------------------クラス(追加用)です-----------------------------------*/
+    .twitter-button { background-color: #1e90ff; color: white; }
+    .youtube-button { background-color: #e83929; color: white; }
+    .niconico-button { background-color: #fff; color: black; }
+    .retro-button { background-color: #ddddff; }
 
-        .info-container {
-            width: 80%;
-            max-width: 800px;
-            margin: 6px auto;
-            background-color: #ffffffdd;
-            border: 4px double #000088;
-            padding: 10px;
-            box-shadow: 5px 5px #8888ff;
-            max-height: 900px;
-        }
+    .retro-button:active,
+    .twitter-button:active,
+    .youtube-button:active,
+    .niconico-button:active {
+      transform: translate(2px, 2px);
+      box-shadow: none;
+    }
 
-        .info-image {
-            max-width: 100%;
-            width: auto;
-            image-rendering: pixelated;
-        }
+    @media (max-width: 600px) {
+      .retro-button {
+        font-size: 14px;
+        padding: 8px 20px;
+      }
+    }
 
-        .info-text {
-            text-align: center;
-            font-size: 16px;
-            line-height: 1.7;
-            overflow-y: auto;
-            padding: 10px;
-            border: 2px dashed #888;
-            background-color: #fffff9;
-            height: 80%;
-        }
+    .profile-section {
+      border: 2px solid #000088;
+      background-color: #eef;
+      padding: 5px;
+      margin-top: 10px;
+    }
 
+    .button-column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+    }
 
-        /*-----------------------------------アットルールです-----------------------------------*/
-        @keyframes scroll_background {
-            0% {
-                background-position: 0 0
-            }
+    .big-button {
+      display: block;
+      width: 80%;
+      max-width: 400px;
+      padding: 15px;
+      margin: 10px 0;
+      background-color: #ccddff;
+      border: 3px double #000088;
+      text-align: center;
+      font-weight: bold;
+      font-size: 18px;
+      text-decoration: none;
+      color: black;
+      box-shadow: 3px 3px #8888ff;
+      transition: transform 0.1s;
+    }
 
-            100% {
-                background-position: -854px -480px;
-            }
-        }
-    </style>
+    .big-button:active {
+      transform: translate(2px, 2px);
+      box-shadow: none;
+    }
 
+    .rainbow-text {
+      background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: bold;
+      font-size: clamp(16px, 5vw, 24px);
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    #followImage {
+      position: fixed;
+      top: 800;
+      left: 0;
+      width: 120px;
+      height: 170px;
+      pointer-events: none;
+      z-index: 9999;
+      transition: top 5s ease-out, left 5s ease-out;
+    }
+
+    .door-section {
+      margin-top: 20px;
+    }
+
+    #doorImage {
+      cursor: pointer;
+      width: 100px;
+      height: auto;
+      transition: 0.3s;
+    }
+
+    .door-text {
+      font-size: 16px;
+      font-weight: bold;
+      margin-top: 10px;
+      color: #000;
+    }
+
+    .marquee-container {
+      width: 100%;
+      overflow: hidden;
+      background-color: #ffffe0;
+      color: black;
+      font-family: "MS Gothic", monospace;
+      font-size: 18px;
+      white-space: nowrap;
+      border-bottom: 2px solid black;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 99999;
+      height: 30px;
+      display: flex;
+      align-items: center;
+    }
+
+    .marquee-text {
+      display: inline-block;
+      padding-left: 100%;
+      animation: scroll-marquee 20s linear infinite;
+    }
+
+    @keyframes scroll-marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    .ripple {
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      border: 2px dashed white;
+      border-radius: 50%;
+      pointer-events: none;
+      transform: scale(0);
+      animation: rippleEffect 0.5s steps(6) forwards;
+      z-index: 99998;
+      opacity: 1;
+    }
+
+    @keyframes rippleEffect {
+      0% { transform: scale(0.5); opacity: 1; }
+      100% { transform: scale(3.0); opacity: 0; }
+    }
+
+    .accepting-badge {
+      display: inline-flex;
+      align-items: center;
+      margin-left: 10px;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      font-weight: bold;
+      font-size: 14px;
+      animation: blink 1s infinite;
+      background: linear-gradient(135deg, red, orange, yellow, green, cyan, blue, violet);
+      color: white;
+      box-shadow: 0 0 5px white;
+      border: 2px solid white;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+  </style>
 </head>
 
 <body>
+  <div class="marquee-container">
+    <div class="marquee-text">★ お知らせ：ホームページが新しくなりました ▶ 最新情報はTwitterでチェック！ ▶ ご連絡は mochiutsune@gmail.comまで★</div>
+  </div>
 
-    <!-- 画面左右の帯(ピラーボックス)、各ページに配置スル -->
+  <div class="container">
+    <h1>★もちうつねのホームページ★</h1>
 
-    <div id="pillarbox">
-        <div class="pillar left"></div>
-        <div class="pillar right"></div>
+  </div>
+
+  <div>
+    <a href="https://twitter.com/" target="_blank" class="twitter-button">Twitter</a>
+    <a href="https://www.youtube.com/" target="_blank" class="youtube-button">YouTube</a>
+    <a href="https://www.nicovideo.jp/" target="_blank" class="niconico-button">niconico</a>
+  </div>
+
+  <div class="profile-section">
+    <h2>...･ﾟ<img src="loading.gif" alt="GIF" style="width:20px"> プロフィール <img src="loading.gif" alt="GIF" style="width:20px">.ﾟ･...</h2>
+    <p>かわいいドラッグメーカー💊<br>曲と絵を描いてます FA#餅鬱絵</p>
+    <a href="mochip.html" style="color: blue; font-size: 0.8em; text-decoration: underline;">もちぴとは？🔎</a>
+
+    <div class="button-column">
+      <a href="https://t.co/O5XB5Z1OPS" class="big-button">▶ グッズ販売🛒</a>
+      <span class="accepting-badge">↓現在受付中！</span>
+      <a href="request.html" class="big-button">▶ ご依頼について⚙️</a>
+      <a href="work.html" class="big-button">▶ 作品使用について🎵</a>
     </div>
 
-    <!-- -----------------------------------お知らせです----------------------------------- -->
-    <div class="top-bar"> <img src="img/favicon.png" class="nn5"> <font color=" #383e60 ">お知らせ：ホームページが新しくなりました</font></div>
+    <h2><font size="3" color="#778899">📨ご連絡はmochiutsune@gmail.comへ </font></h2>
+  </div>
 
-    <div class="centered">
+  <div class="door-section">
+    <img id="doorImage" src="door_closed.png" alt="ドア">
+    <p class="door-text">謎の部屋</p>
+  </div>
 
-        <img src="img/img_funya.gif" class="nn1">
+  <br><br><br>
+  <p style="color: white;">🄫mochiutsune</p>
+  <img id="followImage" src="neko1.png" alt="追従">
 
-        <!-- -----------------------------------タイトルです----------------------------------- -->
-        <div class="title-container">
-            <!--<h1>もちうつねのホームページ</h1> -->
+  <script>
+    const followImg = document.getElementById("followImage");
+    function moveImage(x, y) {
+      followImg.style.left = `${x - 16}px`;
+      followImg.style.top = `${y - 16}px`;
+    }
 
-            <div>
+    document.addEventListener("mousedown", e => moveImage(e.clientX, e.clientY));
+    document.addEventListener("touchstart", e => {
+      if (e.touches.length > 0) {
+        const touch = e.touches[0];
+        moveImage(touch.clientX, touch.clientY);
+      }
+    });
 
-                <img src="img/logo.png" class="nn-logo">
-            </div>
-            <!-- -----------------------------------SNSリンクです----------------------------------- -->
-            <a href="https://twitter.com/mochiutsune" target="_blank" rel="noopener noreferrer" class="twitter-button">Twitter</a>
-            <a href="https://www.youtube.com/@mochiutsune" target="_blank" rel="noopener noreferrer" class="youtube-button">YouTube</a>
-            <a href="https://www.nicovideo.jp/user/125414747" target="_blank" rel="noopener noreferrer" class="niconico-button">niconico</a>
+    const door = document.getElementById("doorImage");
+    const link = "sakkyoku.html";
+    door.addEventListener("click", () => {
+      door.src = "door_open.png";
+      setTimeout(() => { window.location.href = link; }, 800);
+    });
 
-
-        </div>
-        <!-- -----------------------------------その他リンクです----------------------------------- -->
-        <div class="other-link-container">
-            <div class="item">
-                <a href="https://mochiutsune.booth.pm/" target="_blank" rel="noopener noreferrer"><img src="img/icon_shop.png" class="nn2"></a>
-                <p class="item-caption">グッズ販売</p>
-            </div>
-
-            <div class="item">
-                <a href="contact.html" target="_blank" rel="noopener noreferrer"><img src="img/icon_contact.png" class="nn2"></a>
-                <p class="item-caption">ご依頼</p>
-            </div>
-
-            <div class="item">
-                <a href="usage.html" target="_blank" rel="noopener noreferrer"><img src="img/icon_usage.png" class="nn2"></a>
-                <p class="item-caption">作品のご使用</p>
-            </div>
-
-        </div>
-    </div>
-
-    <div class="bottom-container">
-
-        <h2><img src="img/icon_down.gif" class="nn4"> いろいろな情報 <img src="img/icon_down.gif" class="nn4"></h2>
-
-        <!-- FC2カウンター ここから -->
-        <span>あなたは</span>
-        <script language="javascript" type="text/javascript" src="//counter1.fc2.com/counter.php?id=40543778&main=1"></script><noscript><img src="//counter1.fc2.com/counter_img.php?id=40543778&main=1" /></noscript>
-        <span>目の訪問者です！！</span>
-        <!-- FC2カウンター ここまで -->
-
-        <div class="info-container">
-
-            <div class="info-text">
-
-                <H4><font color="#778899" , size="1">･ﾟ･...*★*｡.</font> かわいいドラッグメーカー 曲と絵かいてます <font color="#778899" , size="1">.｡★*...･ﾟ･</font></H4>
-
-            </div>
-        </div>
-
-        <div class="container2">
-            <p>
-                <img src="img/icon_file.png" class="nn4"><em> 最近なにしてる？</em> ⇛ もちうつね『ゲームを作ってるから待っていて。』
-            </p>
-        </div>
-
-        <div class="container1">
-            <p class="outlined-text">
-                <img src="img/icon_warning.png" class="nn4">工事中のため 端末によってレイアウトが崩れる可能性があります
-            </p>
-        </div>
-
-
-
-
-    </div>
-
-    <H2><u><mark>ご連絡はmochiutsune@gmail.comへ</mark></u></H2>
-    <p><font color=" black ">🄫 2025 mochiutsune </font></p>
-
+    document.addEventListener("click", function(e) {
+      const ripple = document.createElement("div");
+      ripple.className = "ripple";
+      document.body.appendChild(ripple);
+      ripple.style.left = `${e.clientX - 50}px`;
+      ripple.style.top = `${e.clientY - 50}px`;
+      setTimeout(() => ripple.remove(), 600);
+    });
+  </script>
 </body>
-    </html>
+</html>
