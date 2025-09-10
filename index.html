@@ -9,10 +9,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>もちうつねのホームページ</title>
 
-<link rel="shortcut icon" href=" img/favicon.png ">
+    <meta property="og:site_name" content="もちうつねのホームページ" />
+
+    <link rel="icon" href="img/favicon.ico" sizes="any">
+    <link rel="icon" href="img/favicon.png" type="image/png" sizes="32x32">
+    <link rel="apple-touch-icon" href="img/favicon.png">
+
 
     <style>
-/*-----------------------------------セレクターです-----------------------------------*/
+        /*-----------------------------------セレクターです-----------------------------------*/
 
         #pillarbox {
             position: fixed;
@@ -21,29 +26,36 @@
             z-index: 10000; /* 最も激しい主張(優先度です) */
             display: block;
         }
+
             #pillarbox .pillar {
                 position: absolute;
                 top: 0;
                 bottom: 0;
-
- 	/* ピラーボックスの画像の指定をするます */
+                /* ピラーボックスの画像の指定をするます */
                 background-image: url("img/tile1.png");
-
-                background-repeat: repeat; 
+                background-repeat: repeat;
                 background-size: 240px auto;
                 image-rendering: pixelated;
             }
-                #pillarbox .pillar.left { left: 0; width: max(calc((100vw - (100vh * 4 / 3)) / 2), 0px); }
-		#pillarbox .pillar.right { right: 0; width: max(calc((100vw - (100vh * 4 / 3)) / 2), 0px); }
 
-/*-----------------------------------FONT指定します-----------------------------------*/
+                #pillarbox .pillar.left {
+                    left: 0;
+                    width: max(calc((100vw - (100vh * 4 / 3)) / 2), 0px);
+                }
+
+                #pillarbox .pillar.right {
+                    right: 0;
+                    width: max(calc((100vw - (100vh * 4 / 3)) / 2), 0px);
+                }
+
+        /*-----------------------------------FONT指定します-----------------------------------*/
 
         @font-face {
             font-family: "DotGothic16";
             src: url("font/DotGothic16-Regular.ttf") format("truetype")
         }
 
- /*-----------------------------------要素です-----------------------------------*/
+        /*-----------------------------------要素です-----------------------------------*/
 
         h1 {
             font-size: clamp(1.7rem, 4vw, 5rem);
@@ -72,7 +84,7 @@
             padding-top: 44px; /*  ～トップバーに埋もれない為に～ */
         }
 
-/*-----------------------------------クラスです-----------------------------------*/
+        /*-----------------------------------クラスです-----------------------------------*/
 
         /* 中央揃えにするです */
         .centered {
@@ -95,17 +107,36 @@
         }
 
         /* 画像ボケ防止(ニアレストネイバー)です*/
-        .nn1,.nn2,.nn3,.nn4,.nn5,.nn-logo {
+        .nn1, .nn2, .nn3, .nn4, .nn5, .nn-logo {
             image-rendering: pixelated;
-
         }
 
         /*48px基準です*/
-        .nn1 {width: 288px; height: auto;}/*4バイ */
-        .nn2 {width: 96px; height: auto;}/*2バイ */
-        .nn3 {width: 48px; height: auto;}/*1バイ */
-        .nn4 {width: 24px; height: auto;}/*1/2バイ */
-        .nn5 {width: 12px; height: auto;} /*1/4バイ */
+        .nn1 {
+            width: 288px;
+            height: auto;
+        }
+        /*4バイ */
+        .nn2 {
+            width: 96px;
+            height: auto;
+        }
+        /*2バイ */
+        .nn3 {
+            width: 48px;
+            height: auto;
+        }
+        /*1バイ */
+        .nn4 {
+            width: 24px;
+            height: auto;
+        }
+        /*1/2バイ */
+        .nn5 {
+            width: 12px;
+            height: auto;
+        }
+        /*1/4バイ */
 
         .nn-logo {
             width: clamp(200px, 90vw, 768px);
@@ -122,10 +153,24 @@
             border-radius: 8px;
         }
 
-    .twitter-button { background-color: #00aafb; color: white; }
-    .youtube-button { background-color: #e23a55; color: white; }
-    .niconico-button { background-color: #fff; color: black; }
-    .sns-button { background-color: white; }
+        .twitter-button {
+            background-color: #00aafb;
+            color: white;
+        }
+
+        .youtube-button {
+            background-color: #e23a55;
+            color: white;
+        }
+
+        .niconico-button {
+            background-color: #fff;
+            color: black;
+        }
+
+        .sns-button {
+            background-color: white;
+        }
 
         /* その他リンク用のコンテナです */
         .other-link-container {
@@ -133,8 +178,16 @@
             display: flex;
             gap: 20px;
         }
-        .item { text-align: center;}
-        .item-caption { margin-top: 1px; font-size: 18px; line-height: 1;}
+
+        .item {
+            text-align: center;
+        }
+
+        .item-caption {
+            margin-top: 1px;
+            font-size: 18px;
+            line-height: 1;
+        }
 
         /* タイトル用のコンテナです */
         .title-container {
@@ -162,16 +215,24 @@
             padding: 16px;
             margin: 20px;
             width: 80%;
-
             border: 3px solid #383e60;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0,0,0,.06);
             max-width: 700px;
         }
-        .container1 {background: #75aae6;}
-        .container2 {background: #ffeb86;}
-        .container3 {background: #c3ff48;}
-        
+
+        .container1 {
+            background: #75aae6;
+        }
+
+        .container2 {
+            background: #ffeb86;
+        }
+
+        .container3 {
+            background: #c3ff48;
+        }
+
 
 
         .outlined-text {
@@ -186,7 +247,7 @@
             max-width: 800px;
         }
 
-/*-----------------------------------クラス(追加用)です-----------------------------------*/
+        /*-----------------------------------クラス(追加用)です-----------------------------------*/
 
         .info-container {
             width: 80%;
@@ -217,11 +278,12 @@
         }
 
 
-/*-----------------------------------アットルールです-----------------------------------*/
+        /*-----------------------------------アットルールです-----------------------------------*/
         @keyframes scroll_background {
             0% {
                 background-position: 0 0
             }
+
             100% {
                 background-position: -854px -480px;
             }
