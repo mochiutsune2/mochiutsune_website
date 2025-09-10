@@ -7,10 +7,27 @@
     <meta charset="UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>ご依頼について</title>
 
+    <!-- ファビコンの設定です -->
+    <link rel="icon" href="img/favicon.ico" sizes="any">
+    <link rel="icon" href="img/favicon.png" type="image/png" sizes="32x32">
+    <link rel="apple-touch-icon" href="img/favicon.png">
+
+    <!-- OGP 各種SNS用 カードです -->
+    <meta property="og:site_name" content="もちうつねのホームページ" />
+    <meta property="og:title" content="お仕事、ご依頼について">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://mochiutsune.com/img/card.png">
+
+    <!-- ツイッター用カードです -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="お仕事、ご依頼について">
+    <meta name="twitter:image" content="https://mochiutsune.com/img/card.png">
+
     <style>
-/*-----------------------------------セレクターです-----------------------------------*/
+        /*-----------------------------------セレクターです-----------------------------------*/
 
         #pillarbox {
             position: fixed;
@@ -19,30 +36,37 @@
             z-index: 10000; /* 最も激しい主張(優先度です) */
             display: block;
         }
+
             #pillarbox .pillar {
                 position: absolute;
                 top: 0;
                 bottom: 0;
-
- 	/* ピラーボックスの画像の指定をするます */
+                /* ピラーボックスの画像の指定をするます */
 
                 background-image: url("img/tile1.png");
-
-                background-repeat: repeat; 
+                background-repeat: repeat;
                 background-size: 240px auto;
                 image-rendering: pixelated;
             }
-                #pillarbox .pillar.left { left: 0; width: max(calc((100vw - (100vh * 4 / 3)) / 2), 0px); }
-		#pillarbox .pillar.right { right: 0; width: max(calc((100vw - (100vh * 4 / 3)) / 2), 0px); }
 
-/*-----------------------------------FONT指定します-----------------------------------*/
+                #pillarbox .pillar.left {
+                    left: 0;
+                    width: max(calc((100vw - (100vh * 4 / 3)) / 2), 0px);
+                }
+
+                #pillarbox .pillar.right {
+                    right: 0;
+                    width: max(calc((100vw - (100vh * 4 / 3)) / 2), 0px);
+                }
+
+        /*-----------------------------------FONT指定します-----------------------------------*/
 
         @font-face {
             font-family: "DotGothic16";
             src: url("font/DotGothic16-Regular.ttf") format("truetype")
         }
 
- /*-----------------------------------要素です-----------------------------------*/
+        /*-----------------------------------要素です-----------------------------------*/
 
         h1 {
             font-size: clamp(1.7rem, 4vw, 5rem);
@@ -71,7 +95,7 @@
             padding-top: 50px; /* ～トップバーに埋もれない為に～ */
         }
 
-/*-----------------------------------クラスです-----------------------------------*/
+        /*-----------------------------------クラスです-----------------------------------*/
 
         /* 中央揃えにするです */
         .centered {
@@ -94,16 +118,36 @@
         }
 
         /* 画像ボケ防止(ニアレストネイバー)です*/
-        .nn1,.nn2,.nn3,.nn4,.nn5,.nn-logo {
+        .nn1, .nn2, .nn3, .nn4, .nn5, .nn-logo {
             image-rendering: pixelated;
         }
 
         /*48px基準です*/
-        .nn1 {width: 288px; height: auto;}/*4バイ */
-        .nn2 {width: 96px; height: auto;}/*2バイ */
-        .nn3 {width: 48px; height: auto;}/*1バイ */
-        .nn4 {width: 24px; height: auto;}/*1/2バイ */
-        .nn5 {width: 12px; height: auto;} /*1/4バイ */
+        .nn1 {
+            width: 288px;
+            height: auto;
+        }
+        /*4バイ */
+        .nn2 {
+            width: 96px;
+            height: auto;
+        }
+        /*2バイ */
+        .nn3 {
+            width: 48px;
+            height: auto;
+        }
+        /*1バイ */
+        .nn4 {
+            width: 24px;
+            height: auto;
+        }
+        /*1/2バイ */
+        .nn5 {
+            width: 12px;
+            height: auto;
+        }
+        /*1/4バイ */
 
         .nn-logo {
             width: clamp(200px, 90vw, 768px);
@@ -119,10 +163,24 @@
             font-size: 16px;
         }
 
-    .twitter-button { background-color: #1e90ff; color: white; }
-    .youtube-button { background-color: #e83929; color: white; }
-    .niconico-button { background-color: #fff; color: black; }
-    .sns-button { background-color: white; }
+        .twitter-button {
+            background-color: #1e90ff;
+            color: white;
+        }
+
+        .youtube-button {
+            background-color: #e83929;
+            color: white;
+        }
+
+        .niconico-button {
+            background-color: #fff;
+            color: black;
+        }
+
+        .sns-button {
+            background-color: white;
+        }
 
         /* その他リンク用のコンテナです */
         .other-link-container {
@@ -130,8 +188,16 @@
             display: flex;
             gap: 20px;
         }
-        .item { text-align: center;}
-        .item-caption { margin-top: 1px; font-size: 18px; line-height: 1;}
+
+        .item {
+            text-align: center;
+        }
+
+        .item-caption {
+            margin-top: 1px;
+            font-size: 18px;
+            line-height: 1;
+        }
 
         /* タイトル用のコンテナです */
         .title-container {
@@ -152,68 +218,65 @@
             box-sizing: border-box;
         }
 
-/*-----------------------------------クラス(追加用)です-----------------------------------*/
+        /*-----------------------------------クラス(追加用)です-----------------------------------*/
 
-    .info-container {
-      width: 80%;
-      max-width: 800px;
-      
-      margin: 6px auto;
-      background-color: #ffffffdd;
-      border: 4px double #000088;
-      padding: 10px;
-      box-shadow: 5px 5px #8888ff;
+        .info-container {
+            width: 80%;
+            max-width: 800px;
+            margin: 6px auto;
+            background-color: #ffffffdd;
+            border: 4px double #000088;
+            padding: 10px;
+            box-shadow: 5px 5px #8888ff;
+            max-height: 900px;
+        }
 
-      max-height: 900px;
-    }
+        .info-image {
+            max-width: 100%;
+            height: auto;
+            image-rendering: pixelated;
+        }
 
-    .info-image {
-      max-width: 100%;
-      height: auto;
-      image-rendering: pixelated;
-    }
+        .info-text {
+            text-align: left;
+            font-size: 16px;
+            line-height: 1.7;
+            overflow-y: auto;
+            padding: 10px;
+            border: 2px dashed #888;
+            background-color: #fffff9;
+            margin-top: 20px;
+            height: 400px;
+        }
 
-    .info-text {
+        /* ホームに戻る用のボタンです */
 
-      text-align: left;
-      font-size: 16px;
-      line-height: 1.7;
-      overflow-y: auto;
-      padding: 10px;
-      border: 2px dashed #888;
-      background-color: #fffff9;
-      margin-top: 20px;
+        .back-button {
+            margin-top: 20px;
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #ddddff;
+            border: 2px solid #000088;
+            font-weight: bold;
+            font-size: 16px;
+            text-decoration: none;
+            color: black;
+            box-shadow: 2px 2px #8888ff;
+        }
 
-      height: 400px ;
-    }
-
-/* ホームに戻る用のボタンです */
-
-    .back-button {
-      margin-top: 20px;
-      display: inline-block;
-      padding: 10px 20px;
-      background-color: #ddddff;
-      border: 2px solid #000088;
-      font-weight: bold;
-      font-size: 16px;
-      text-decoration: none;
-      color: black;
-      box-shadow: 2px 2px #8888ff;
-    }
-
-/*-----------------------------------アットルールです-----------------------------------*/
+        /*-----------------------------------アットルールです-----------------------------------*/
 
         @keyframes scroll_background {
             0% {
                 background-position: 0 0
             }
+
             100% {
                 background-position: 854px 0px;
             }
         }
 
-/* 縦持ちスマホ対策(後でもっとどうにかすべき) */
+        /* 縦持ちスマホ対策(後でもっとどうにかすべき) */
 
         @media (max-width: 640px), (max-aspect-ratio: 9/16) {
             .info-text {
@@ -224,7 +287,6 @@
                 width: 85%;
             }
         }
-
     </style>
 
 </head>
@@ -239,7 +301,7 @@
 
     <!-- トップバー -->
 
-    <div class="top-bar"> <img src="img/icon_contact.png" class="nn4"> お仕事のご依頼について </div>
+    <div class="top-bar"> <img src="img/icon_contact.png" class="nn4"> お仕事、ご依頼について </div>
 
     <!--↓↓↓↓↓↓↓↓↓↓↓↓本文↓↓↓↓↓↓↓↓↓↓↓↓-->
 
