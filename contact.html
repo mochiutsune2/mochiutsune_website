@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+
+<!-- 見たっていい -->
+
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ご依頼について</title>
+
+    <style>
+/*-----------------------------------セレクターです-----------------------------------*/
+
+        #pillarbox {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 10000; /* 最も激しい主張(優先度です) */
+            display: block;
+        }
+            #pillarbox .pillar {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+
+ 	/* ピラーボックスの画像の指定をするます */
+
+                background-image: url("img/tile1.png");
+
+                background-repeat: repeat; 
+                background-size: 240px auto;
+                image-rendering: pixelated;
+            }
+                #pillarbox .pillar.left { left: 0; width: max(calc((100vw - (100vh * 4 / 3)) / 2), 0px); }
+		#pillarbox .pillar.right { right: 0; width: max(calc((100vw - (100vh * 4 / 3)) / 2), 0px); }
+
+/*-----------------------------------FONT指定します-----------------------------------*/
+
+        @font-face {
+            font-family: "DotGothic16";
+            src: url("DotGothic16-Regular.ttf") format("truetype")
+        }
+
+ /*-----------------------------------要素です-----------------------------------*/
+
+        h1 {
+            font-size: clamp(1.7rem, 4vw, 5rem);
+            color: white;
+            margin: 0;
+            text-shadow: -3px -3px 0 black, 3px -3px 0 black, -3px 3px 0 black, 3px 3px 0 black;
+        }
+
+        h2 {
+            font-size: clamp(1.2rem, 2.8vw, 1.8rem);
+            color: black;
+            font-weight: normal;
+            margin: 0.2em 0;
+        }
+
+        body {
+            background-color: #ffeb86; /* 安いマーガリンを死んだ目で塗りたくる、そんな色 */
+            animation: scroll_background 15s linear infinite;
+            background-image: url("img/background3.png");
+            font: 18px "DotGothic16";
+            text-align: center;
+        }
+
+        body {
+            margin: 0;
+            padding-top: 50px; /* ～トップバーに埋もれない為に～ */
+        }
+
+/*-----------------------------------クラスです-----------------------------------*/
+
+        /* 中央揃えにするです */
+        .centered {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* 上部のバー */
+        .top-bar {
+            background: #ffffe0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            font: 18px "DotGothic16";
+            text-align: center;
+            padding: 8px 0;
+            z-index: 1000; /* 激しい主張(優先度です) */
+        }
+
+        /* 画像ボケ防止(ニアレストネイバー)です*/
+        .nn1,.nn2,.nn3,.nn4,.nn5,.nn-logo {
+            image-rendering: pixelated;
+        }
+
+        /*48px基準です*/
+        .nn1 {width: 288px; height: auto;}/*4バイ */
+        .nn2 {width: 96px; height: auto;}/*2バイ */
+        .nn3 {width: 48px; height: auto;}/*1バイ */
+        .nn4 {width: 24px; height: auto;}/*1/2バイ */
+        .nn5 {width: 12px; height: auto;} /*1/4バイ */
+
+        .nn-logo {
+            width: clamp(200px, 90vw, 768px);
+            height: auto;
+        }
+
+        /* SNSボタンです */
+        .sns-button, .twitter-button, .youtube-button, .niconico-button {
+            border: 2px solid black;
+            padding: 1px 8px;
+            text-decoration: none;
+            color: black;
+            font-size: 16px;
+        }
+
+    .twitter-button { background-color: #1e90ff; color: white; }
+    .youtube-button { background-color: #e83929; color: white; }
+    .niconico-button { background-color: #fff; color: black; }
+    .sns-button { background-color: white; }
+
+        /* その他リンク用のコンテナです */
+        .other-link-container {
+            padding: 20px;
+            display: flex;
+            gap: 20px;
+        }
+        .item { text-align: center;}
+        .item-caption { margin-top: 1px; font-size: 18px; line-height: 1;}
+
+        /* タイトル用のコンテナです */
+        .title-container {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,.06);
+        }
+        /* フッター用？です */
+        .bottom-container {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1px;
+            box-shadow: 0 2px 8px rgba(0,0,0,.06);
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+/*-----------------------------------クラス(追加用)です-----------------------------------*/
+
+    .info-container {
+      width: 80%;
+      max-width: 800px;
+      
+      margin: 6px auto;
+      background-color: #ffffffdd;
+      border: 4px double #000088;
+      padding: 10px;
+      box-shadow: 5px 5px #8888ff;
+
+      max-height: 900px;
+    }
+
+    .info-image {
+      max-width: 100%;
+      height: auto;
+      image-rendering: pixelated;
+    }
+
+    .info-text {
+
+      text-align: left;
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-y: auto;
+      padding: 10px;
+      border: 2px dashed #888;
+      background-color: #fffff9;
+      margin-top: 20px;
+
+      height: 400px ;
+    }
+
+/* ホームに戻る用のボタンです */
+
+    .back-button {
+      margin-top: 20px;
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #ddddff;
+      border: 2px solid #000088;
+      font-weight: bold;
+      font-size: 16px;
+      text-decoration: none;
+      color: black;
+      box-shadow: 2px 2px #8888ff;
+    }
+
+/*-----------------------------------アットルールです-----------------------------------*/
+
+        @keyframes scroll_background {
+            0% {
+                background-position: 0 0
+            }
+            100% {
+                background-position: 854px 0px;
+            }
+        }
+
+/* 縦持ちスマホ対策(後でもっとどうにかすべき) */
+
+        @media (max-width: 640px), (max-aspect-ratio: 9/16) {
+            .info-text {
+                height: 600px;
+            }
+
+            .info-container {
+                width: 85%;
+            }
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <!-- 画面左右の帯(ピラーボックス)、各ページに配置スル -->
+
+    <div id="pillarbox">
+        <div class="pillar left"></div>
+        <div class="pillar right"></div>
+    </div>
+
+    <!-- トップバー -->
+
+    <div class="top-bar"> <img src="img/icon_contact.png" class="nn4"> お仕事のご依頼について </div>
+
+    <!--↓↓↓↓↓↓↓↓↓↓↓↓本文↓↓↓↓↓↓↓↓↓↓↓↓-->
+
+    <H2><u><mark>ご連絡はmochiutsune@gmail.comへ</mark></u></H2>
+
+    <div class="info-container">
+
+        <div class="info-image">
+            <img src="img/img_contact.png" alt="contact" class="info-image">
+        </div>
+
+        <div class="info-text">
+
+            <H4>⚙️ ご依頼について-------</H4>
+            ■予算 ・納期 ・名前 ・依頼内容 が無ければご返信できかねます。<br>
+            ■自分の作風や方針に合わないものはお断りする場合がございます、予めご了承ください。 <br>
+            ■おおよそ一週間以内にご返信いたします。個人管理のため見落としてしまうことがあります。<br>
+            しばらく返信が無かった場合、お手数おかけしますが再送していただけますと幸いです。
+
+
+            <font color="green">
+
+                <H4>🌎 English( Machine translation )-------</H4>
+                <H4>⚙️ About your request-------</H4>
+                ■I cannot reply without your budget, deadline, name, and request details. <br>
+                ■Please note that I may decline requests that do not fit my style or policy. <br>
+                ■I will reply within approximately one week. <br>As I manage this alone, I may miss something. <br>
+                If you do not receive a reply for a while, I apologize for the inconvenience, but I would appreciate it if you could resend the request.
+
+            </font>
+
+        </div>
+
+        <a href="index.html" class="back-button">ホームに戻る</a>
+
+
+
+    </div>
+
+    <p><font color=" black ">🄫 2025 mochiutsune </font></p>
+
+    <!--↑↑↑↑↑↑↑↑↑↑↑↑本文ここまで↑↑↑↑↑↑↑↑↑↑↑↑-->
+
+</body>
+</html>

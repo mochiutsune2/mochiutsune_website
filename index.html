@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+
+<!-- 何見てんだよ -->
+
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>もちうつねのホームページ</title>
+
+    <style>
+/*-----------------------------------セレクターです-----------------------------------*/
+
+        #pillarbox {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 10000; /* 最も激しい主張(優先度です) */
+            display: block;
+        }
+            #pillarbox .pillar {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+
+ 	/* ピラーボックスの画像の指定をするます */
+                background-image: url("img/tile1.png");
+
+                background-repeat: repeat; 
+                background-size: 240px auto;
+                image-rendering: pixelated;
+            }
+                #pillarbox .pillar.left { left: 0; width: max(calc((100vw - (100vh * 4 / 3)) / 2), 0px); }
+		#pillarbox .pillar.right { right: 0; width: max(calc((100vw - (100vh * 4 / 3)) / 2), 0px); }
+
+/*-----------------------------------FONT指定します-----------------------------------*/
+
+        @font-face {
+            font-family: "DotGothic16";
+            src: url("font/DotGothic16-Regular.ttf") format("truetype")
+        }
+
+ /*-----------------------------------要素です-----------------------------------*/
+
+        h1 {
+            font-size: clamp(1.7rem, 4vw, 5rem);
+            color: white;
+            margin: 0;
+            text-shadow: -3px -3px 0 black, 3px -3px 0 black, -3px 3px 0 black, 3px 3px 0 black;
+        }
+
+        h2 {
+            font-size: clamp(1.2rem, 2.8vw, 1.8rem);
+            color: black;
+            font-weight: normal;
+            margin: 0.2em 0;
+        }
+
+        body {
+            background-color: #febbdd; /* 噛み飽きたガムのような、そんな色 */
+            animation: scroll_background 15s linear infinite;
+            background-image: url("img/background.png");
+            font: 18px "DotGothic16";
+            text-align: center;
+        }
+
+        body {
+            margin: 0;
+            padding-top: 44px; /*  ～トップバーに埋もれない為に～ */
+        }
+
+/*-----------------------------------クラスです-----------------------------------*/
+
+        /* 中央揃えにするです */
+        .centered {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* 上部のバー */
+        .top-bar {
+            background: #ffffe0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            font: 18px "DotGothic16";
+            text-align: center;
+            padding: 8px 0;
+            z-index: 1000; /* 激しい主張(優先度です) */
+        }
+
+        /* 画像ボケ防止(ニアレストネイバー)です*/
+        .nn1,.nn2,.nn3,.nn4,.nn5,.nn-logo {
+            image-rendering: pixelated;
+
+        }
+
+        /*48px基準です*/
+        .nn1 {width: 288px; height: auto;}/*4バイ */
+        .nn2 {width: 96px; height: auto;}/*2バイ */
+        .nn3 {width: 48px; height: auto;}/*1バイ */
+        .nn4 {width: 24px; height: auto;}/*1/2バイ */
+        .nn5 {width: 12px; height: auto;} /*1/4バイ */
+
+        .nn-logo {
+            width: clamp(200px, 90vw, 768px);
+            height: auto;
+        }
+
+        /* SNSボタンです */
+        .sns-button, .twitter-button, .youtube-button, .niconico-button {
+            border: 2px solid black;
+            padding: 1px 8px;
+            text-decoration: none;
+            color: black;
+            font-size: 16px;
+            border-radius: 8px;
+        }
+
+    .twitter-button { background-color: #00aafb; color: white; }
+    .youtube-button { background-color: #e23a55; color: white; }
+    .niconico-button { background-color: #fff; color: black; }
+    .sns-button { background-color: white; }
+
+        /* その他リンク用のコンテナです */
+        .other-link-container {
+            padding: 20px;
+            display: flex;
+            gap: 20px;
+        }
+        .item { text-align: center;}
+        .item-caption { margin-top: 1px; font-size: 18px; line-height: 1;}
+
+        /* タイトル用のコンテナです */
+        .title-container {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 16px;
+            border: 3px solid #383e60;
+            box-shadow: 0 2px 8px rgba(0,0,0,.06);
+        }
+
+        /* ボトム用です */
+        .bottom-container {
+            place-items: center;
+            background: #fff;
+            border: 3px solid #383e60;
+            padding: 1%;
+            box-shadow: 0 2px 8px rgba(0,0,0,.06);
+            min-height: 1%;
+            box-sizing: border-box;
+        }
+
+        /* 汎用コンテナ */
+        .container1, .container2, .container3, .container4 {
+            padding: 16px;
+            margin: 20px;
+            width: 80%;
+
+            border: 3px solid #383e60;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,.06);
+            max-width: 700px;
+        }
+        .container1 {background: #75aae6;}
+        .container2 {background: #ffeb86;}
+        .container3 {background: #c3ff48;}
+        
+
+
+        .outlined-text {
+            color: white;
+            text-shadow: 2px 2px 0 black, -2px 2px 0 black, 2px -2px 0 black, -2px -2px 0 black, 2px 0 0 black, -2px 0 0 black, 0 2px 0 black, 0 -2px 0 black;
+        }
+
+        .info-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            max-width: 800px;
+        }
+
+/*-----------------------------------クラス(追加用)です-----------------------------------*/
+
+        .info-container {
+            width: 80%;
+            max-width: 800px;
+            margin: 6px auto;
+            background-color: #ffffffdd;
+            border: 4px double #000088;
+            padding: 10px;
+            box-shadow: 5px 5px #8888ff;
+            max-height: 900px;
+        }
+
+        .info-image {
+            max-width: 100%;
+            width: auto;
+            image-rendering: pixelated;
+        }
+
+        .info-text {
+            text-align: center;
+            font-size: 16px;
+            line-height: 1.7;
+            overflow-y: auto;
+            padding: 10px;
+            border: 2px dashed #888;
+            background-color: #fffff9;
+            height: 80%;
+        }
+
+
+/*-----------------------------------アットルールです-----------------------------------*/
+        @keyframes scroll_background {
+            0% {
+                background-position: 0 0
+            }
+            100% {
+                background-position: -854px -480px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- 画面左右の帯(ピラーボックス)、各ページに配置スル -->
+
+    <div id="pillarbox">
+        <div class="pillar left"></div>
+        <div class="pillar right"></div>
+    </div>
+
+    <!-- -----------------------------------お知らせです----------------------------------- -->
+    <div class="top-bar"> <img src="img/icon_loading.gif" class="nn5"> <font color=" #383e60 ">お知らせ：ホームページが新しくなりました</font></div>
+
+    <div class="centered">
+
+        <img src="img/img_funya.gif" class="nn1">
+
+        <!-- -----------------------------------タイトルです----------------------------------- -->
+        <div class="title-container">
+            <!--<h1>もちうつねのホームページ</h1> -->
+
+            <div>
+
+                <img src="img/logo.png" class="nn-logo">
+            </div>
+            <!-- -----------------------------------SNSリンクです----------------------------------- -->
+            <a href="https://twitter.com/mochiutsune" target="_blank" rel="noopener noreferrer" class="twitter-button">Twitter</a>
+            <a href="https://www.youtube.com/@mochiutsune" target="_blank" rel="noopener noreferrer" class="youtube-button">YouTube</a>
+            <a href="https://www.nicovideo.jp/user/125414747" target="_blank" rel="noopener noreferrer" class="niconico-button">niconico</a>
+
+
+        </div>
+        <!-- -----------------------------------その他リンクです----------------------------------- -->
+        <div class="other-link-container">
+            <div class="item">
+                <a href="https://mochiutsune.booth.pm/" target="_blank" rel="noopener noreferrer"><img src="img/icon_shop.png" class="nn2"></a>
+                <p class="item-caption">グッズ販売</p>
+            </div>
+
+            <div class="item">
+                <a href="contact.html" target="_blank" rel="noopener noreferrer"><img src="img/icon_contact.png" class="nn2"></a>
+                <p class="item-caption">ご依頼</p>
+            </div>
+
+            <div class="item">
+                <a href="usage.html" target="_blank" rel="noopener noreferrer"><img src="img/icon_usage.png" class="nn2"></a>
+                <p class="item-caption">作品のご使用</p>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="bottom-container">
+
+        <h2><img src="img/icon_down.gif" class="nn4"> いろいろな情報 <img src="img/icon_down.gif" class="nn4"></h2>
+
+        <div class="info-container">
+
+            <div class="info-text">
+
+                <H4><font color="#778899" , size="1">･ﾟ･...*★*｡.</font> かわいいドラッグメーカー 曲と絵かいてます <font color="#778899" , size="1">.｡★*...･ﾟ･</font></H4>
+
+            </div>
+        </div>
+
+        <div class="container2">
+            <p>
+                <img src="img/icon_file.png" class="nn4"><em> 最近なにしてる？</em> ⇛ もちうつね『ゲームを作ってるから待っていて。』
+            </p>
+        </div>
+
+        <div class="container1">
+            <p class="outlined-text">
+                <img src="img/icon_warning.png" class="nn4">工事中のため 端末によってレイアウトが崩れる可能性があります
+            </p>
+        </div>
+
+
+
+
+    </div>
+
+    <H2><u><mark>ご連絡はmochiutsune@gmail.comへ</mark></u></H2>
+    <p><font color=" black ">🄫 2025 mochiutsune </font></p>
+
+</body>
+    </html>
